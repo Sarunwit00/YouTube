@@ -8,6 +8,39 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final List<Map<String, dynamic>> categories = [
+    {
+      'label': 'All',
+    },
+    {
+      'label': 'Game',
+    },
+    {
+      'label': 'Message',
+    },
+    {
+      'label': 'Podcast',
+    },
+    {
+      'label': 'Live',
+    },
+    {
+      'label': 'Song',
+    },
+     {
+      'label': 'Mix',
+    },
+     {
+      'label': 'Basketball',
+    },
+     {
+      'label': 'Action adventure game',
+    },
+     {
+      'label': 'New video for you',
+    },
+  ];
+  int selectedCategoryIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +68,65 @@ class _HomepageState extends State<Homepage> {
             ],
             backgroundColor: Colors.black,
           ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: Colors.black,
+              height: 50,
+              padding: const EdgeInsets.symmetric(vertical:9.0),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (context, index){
+                  final item = categories[index];
+                  final bool isSelected = (index == selectedCategoryIndex);
+                  return GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectedCategoryIndex = index;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                        color: isSelected ? Colors.white : Colors.black,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isSelected ? Colors.white : Colors.grey,
+                          width: 1,
+                        ),
+                    ),
+                    child: Row(
+                        children: [
+                          if (item['icon'] != null) ...[
+                            Icon(
+                              item['icon'],
+                              size: 16,
+                              color: isSelected ? Colors.black : Colors.white,
+                            ),
+                            const SizedBox(width: 4),
+                          ],
+                          if (item['label'] != null)
+                            Text(
+                              item['label'],
+                              style: TextStyle(
+                                color: isSelected ? Colors.black : Colors.white,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+              ),
+            ),
+          ),
         ],
       ),
+      
     );
   }
 }
