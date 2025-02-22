@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -8,9 +10,29 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  
   final String _userName = "Sarunwit Pibul";
   final String _userEmail = "sarunwit@gmail.com";
+
+  final List<Map<String, dynamic>> categories = [
+    {
+      'icon': Icons.account_circle_outlined,
+      'label': 'Switch accounts'
+    },
+    {
+      'icon':  Icons.g_mobiledata_outlined,
+      'label': 'Switch accounts'
+    },
+    {
+      'icon':  Icons.masks,
+      'label': 'Turn on incognito mode'
+    },
+    {
+      'icon':  Icons.share,
+      'label': 'Share channel'
+    },
+    
+  ];
+  int selectedCategoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +69,66 @@ class _AccountPageState extends State<AccountPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
               Text(
                 _userEmail,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[700],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                //color: Colors.black,
+                height: 50,
+                padding: const EdgeInsets.symmetric(vertical:9.0),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    final item = categories[index];
+                    final bool isSelected = (index == selectedCategoryIndex);
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedCategoryIndex = index;
+                        });
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.white : Colors.black,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: isSelected ? Colors.white : Colors.grey,
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            if (item['icon'] != null) ...[
+                              Icon(
+                                item['icon'],
+                                size: 16,
+                                color: isSelected ? Colors.black : Colors.white,
+                              ),
+                              const SizedBox(width: 4),
+                            ],
+                            if (item['label'] != null)
+                              Text(
+                                item['label'],
+                                style: TextStyle(
+                                  color: isSelected ? Colors.black : Colors.white,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 20),
@@ -62,7 +138,6 @@ class _AccountPageState extends State<AccountPage> {
                 trailing: const Icon(Icons.arrow_forward_ios),
                 onTap: () {},
               ),
-              //const Divider(),
               ListTile(
                 leading: const Icon(Icons.download),
                 title: const Text('Download'),
