@@ -9,36 +9,16 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final List<Map<String, dynamic>> categories = [
-    {
-      'label': 'All',
-    },
-    {
-      'label': 'Game',
-    },
-    {
-      'label': 'Message',
-    },
-    {
-      'label': 'Podcast',
-    },
-    {
-      'label': 'Live',
-    },
-    {
-      'label': 'Song',
-    },
-     {
-      'label': 'Mix',
-    },
-     {
-      'label': 'Basketball',
-    },
-     {
-      'label': 'Action adventure game',
-    },
-     {
-      'label': 'New video for you',
-    },
+    {'label': 'All'},
+    {'label': 'Game'},
+    {'label': 'Message'},
+    {'label': 'Podcast'},
+    {'label': 'Live'},
+    {'label': 'Song'},
+    {'label': 'Mix'},
+    {'label': 'Basketball'},
+    {'label': 'Action adventure game'},
+    {'label': 'New video for you'},
   ];
   int selectedCategoryIndex = 0;
   @override
