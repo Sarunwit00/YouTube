@@ -6,17 +6,11 @@ class AccountPage extends StatefulWidget {
   @override
   State<AccountPage> createState() => _AccountPageState();
 }
+
 class _AccountPageState extends State<AccountPage> {
   
   final String _userName = "Sarunwit Pibul";
   final String _userEmail = "sarunwit@gmail.com";
-
-  final List<Map<String, dynamic>> categories = [
-    {'label': 'All'},
-    {'label': 'Game'},
-    {'label': 'Message'},
-  ];
-  int selectedCategoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +47,7 @@ class _AccountPageState extends State<AccountPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              
               Text(
                 _userEmail,
                 style: TextStyle(
@@ -60,8 +55,6 @@ class _AccountPageState extends State<AccountPage> {
                   color: Colors.grey[700],
                 ),
               ),
-              const SizedBox(height: 20),
-              
               const SizedBox(height: 20),
               ListTile(
                 leading: const Icon(Icons.video_library),
