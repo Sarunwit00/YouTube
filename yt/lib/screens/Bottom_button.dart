@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../page/Home_Page.dart';
+
 class BottomButton extends StatefulWidget {
   const BottomButton({super.key});
 
@@ -9,22 +11,35 @@ class BottomButton extends StatefulWidget {
 
 class _BottomButtonState extends State<BottomButton> {
   int _selectedIndex = 0;
-  //  final List<Widget> _screens = [
-  //   HomePage(),       
-  //   ShortsPage(),      
-  //   Container(),       
-  //   SubscriptionsPage(),
-  //   AccountPage(),
-  // ];
+
+  final _screens = [
+    Homepage(),
+    const Scaffold(body: Center(child: Text('Shorts'))),
+    const Scaffold(body: Center(child: Text('Add'))),
+    const Scaffold(body: Center(child: Text('Subscriptions'))),
+    const Scaffold(body: Center(child: Text('Account'))),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+        children: _screens
+            .asMap()
+            .map((i, screen) => MapEntry(
+                i,
+                Offstage(
+                  offstage: _selectedIndex != i,
+                  child: screen,
+                )))
+            .values
+            .toList(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: (i) => setState(() => _selectedIndex = i),
         selectedFontSize: 10.0,
         unselectedFontSize: 10.0,
-        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
