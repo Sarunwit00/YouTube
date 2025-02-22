@@ -23,6 +23,7 @@ class _AccountPageState extends State<AccountPage> {
             onPressed: () {},
           ),
         ],
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Padding(
