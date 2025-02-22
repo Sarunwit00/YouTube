@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Search_Page.dart';
+
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
@@ -43,7 +45,14 @@ class _HomepageState extends State<Homepage> {
               ),
               IconButton(
                 icon: const Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchPage(),
+                    ),
+                  );
+                },
               ),
             ],
             backgroundColor: Colors.black,
