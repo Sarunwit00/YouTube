@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Account.dart';
 import 'Home_page.dart';
 
 class BottomButton extends StatefulWidget {
@@ -16,7 +17,7 @@ class _BottomButtonState extends State<BottomButton> {
     const Scaffold(body: Center(child: Text('Shorts'))),
     const Scaffold(body: Center(child: Text('Add'))),
     const Scaffold(body: Center(child: Text('Subscriptions'))),
-    const Scaffold(body: Center(child: Text('Account'))),
+    AccountPage(),
   ];
   @override
   Widget build(BuildContext context) {
