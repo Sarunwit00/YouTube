@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../page/Home_Page.dart';
-
 
 class BottomButton extends StatefulWidget {
   const BottomButton({super.key});
@@ -11,13 +9,13 @@ class BottomButton extends StatefulWidget {
 
 class _BottomButtonState extends State<BottomButton> {
   int _selectedIndex = 0;
-   final List<Widget> _screens = [
-    HomePage(),       
-    //ShortsPage(),      
-    //Add(),       
-    //SubscriptionsPage(),
-    //AccountPage(),
-  ];
+  //  final List<Widget> _screens = [
+  //   HomePage(),       
+  //   ShortsPage(),      
+  //   Container(),       
+  //   SubscriptionsPage(),
+  //   AccountPage(),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,5 +60,3 @@ class _BottomButtonState extends State<BottomButton> {
     );
   }
 }
-
-
