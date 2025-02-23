@@ -80,18 +80,24 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
   late VideoPlayerController _controller;
   bool _initialized = false;
 
+  // เพิ่ม state สำหรับไลค์และดิสไลค์
+  int _likeCount = 0;
+  int _dislikeCount = 0;
+
   @override
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoUrl)
       ..setLooping(true)
       ..initialize().then((_) {
-        setState(() => _initialized = true);
+        setState(() {
+          _initialized = true;
+        });
         if (widget.isActive) {
           _controller.play();
         }
       }).catchError((error) {
-        print('Error initializing video: $error');
+        debugPrint('Error initializing video: $error');
       });
   }
 
@@ -113,7 +119,7 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // แสดงวิดีโอเต็มจอ
+        // วิดีโอเต็มจอ
         Positioned.fill(
           child: _initialized
               ? VideoPlayer(_controller)
@@ -124,7 +130,8 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
                   ),
                 ),
         ),
-        // Overlay แสดงข้อมูล creator และ title
+
+        // แสดง Creator และ Title ด้านซ้ายล่าง
         Positioned(
           left: 16,
           bottom: 100,
@@ -144,6 +151,64 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
                 widget.title,
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
+            ],
+          ),
+        ),
+
+        // ชุดปุ่มด้านขวา (Like, Dislike, Comment, Share)
+        Positioned(
+          right: 16,
+          bottom: 180,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Like
+              IconButton(
+                icon: const Icon(Icons.thumb_up, color: Colors.white, size: 30),
+                onPressed: () {
+                  setState(() {
+                    _likeCount++; // เพิ่มจำนวนไลค์
+                  });
+                },
+              ),
+              // แสดงจำนวนไลค์ที่กด
+              Text('$_likeCount', style: const TextStyle(color: Colors.white)),
+
+              const SizedBox(height: 20),
+
+              // Dislike
+              IconButton(
+                icon: const Icon(Icons.thumb_down, color: Colors.white, size: 30),
+                onPressed: () {
+                  setState(() {
+                    _dislikeCount++; // เพิ่มจำนวนดิสไลค์
+                  });
+                },
+              ),
+              // แสดงจำนวนดิสไลค์ที่กด
+              Text('$_dislikeCount', style: const TextStyle(color: Colors.white)),
+
+              const SizedBox(height: 20),
+
+              // Comment
+              IconButton(
+                icon: const Icon(Icons.comment, color: Colors.white, size: 30),
+                onPressed: () {
+                  // โค้ดเมื่อกดปุ่ม Comment
+                },
+              ),
+              const Text('0', style: TextStyle(color: Colors.white)),
+
+              const SizedBox(height: 20),
+
+              // Share
+              IconButton(
+                icon: const Icon(Icons.share, color: Colors.white, size: 30),
+                onPressed: () {
+                  // โค้ดเมื่อกดปุ่ม Share
+                },
+              ),
+              const Text('แชร์', style: TextStyle(color: Colors.white)),
             ],
           ),
         ),
