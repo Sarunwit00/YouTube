@@ -109,7 +109,7 @@ class _BottomButtonState extends State<BottomButton> {
                 child: Row(
                   children: [
                     const Text(
-                      'สร้าง',
+                      'Create',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
