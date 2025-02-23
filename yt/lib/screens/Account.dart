@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'SettingsPage.dart';
+
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -15,9 +17,9 @@ class _AccountPageState extends State<AccountPage> {
   // ข้อมูลสำหรับ ListView แนวนอน
   final List<Map<String, dynamic>> categories = [
     {'icon': Icons.account_circle_outlined, 'label': 'Switch accounts'},
-    {'icon': Icons.g_mobiledata_outlined,   'label': 'Switch accounts'},
-    {'icon': Icons.masks,                  'label': 'Turn on incognito mode'},
-    {'icon': Icons.share,                  'label': 'Share channel'},
+    {'icon': Icons.g_mobiledata_outlined, 'label': 'Switch accounts'},
+    {'icon': Icons.masks, 'label': 'Turn on incognito mode'},
+    {'icon': Icons.share, 'label': 'Share channel'},
   ];
 
   // เก็บ index ของ item ที่ถูกกดอยู่ (ถ้าไม่มีการกดจะเป็น null)
@@ -31,7 +33,14 @@ class _AccountPageState extends State<AccountPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
           ),
         ],
         backgroundColor: Colors.black,
@@ -41,7 +50,6 @@ class _AccountPageState extends State<AccountPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[300],
@@ -67,7 +75,6 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              
               Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(vertical: 9.0),
@@ -76,11 +83,10 @@ class _AccountPageState extends State<AccountPage> {
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final item = categories[index];
-                    
+
                     final bool isPressed = (index == pressedIndex);
 
                     return GestureDetector(
-                      
                       onTapDown: (_) {
                         setState(() {
                           pressedIndex = index;
