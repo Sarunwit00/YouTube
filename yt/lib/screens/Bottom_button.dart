@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Account.dart';
 import 'Home_page.dart';
+import 'Subscrip.dart';
 
 class BottomButton extends StatefulWidget {
   const BottomButton({super.key});
@@ -16,7 +17,7 @@ class _BottomButtonState extends State<BottomButton> {
     Homepage(),
     const Scaffold(body: Center(child: Text('Shorts'))),
     const Scaffold(body: Center(child: Text('Add'))),
-    const Scaffold(body: Center(child: Text('Subscriptions'))),
+    Subscrip(),
     AccountPage(),
   ];
   @override

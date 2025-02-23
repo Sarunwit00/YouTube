@@ -13,7 +13,7 @@ final List<Map<String, String>> mockVideos = [
    {
     'title': 'Tommy Richman - MILLION DOLLAR BABY(Official Music Video)',
     'channel': 'Tommy Richman',
-    'views': 'การดู 52 ล้าน ครั้ง 7 เดือนที่',
+    'views': 'การดู 52 ล้าน ครั้ง 7 เดือนที่แล้ว',
     'thumbnail': 'assets/c3.png',
     'duration': '2:47',
     'avatar': 'assets/c4.png',
