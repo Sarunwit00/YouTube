@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -13,26 +12,16 @@ class _AccountPageState extends State<AccountPage> {
   final String _userName = "Sarunwit Pibul";
   final String _userEmail = "sarunwit@gmail.com";
 
+  // ข้อมูลสำหรับ ListView แนวนอน
   final List<Map<String, dynamic>> categories = [
-    {
-      'icon': Icons.account_circle_outlined,
-      'label': 'Switch accounts'
-    },
-    {
-      'icon':  Icons.g_mobiledata_outlined,
-      'label': 'Switch accounts'
-    },
-    {
-      'icon':  Icons.masks,
-      'label': 'Turn on incognito mode'
-    },
-    {
-      'icon':  Icons.share,
-      'label': 'Share channel'
-    },
-    
+    {'icon': Icons.account_circle_outlined, 'label': 'Switch accounts'},
+    {'icon': Icons.g_mobiledata_outlined,   'label': 'Switch accounts'},
+    {'icon': Icons.masks,                  'label': 'Turn on incognito mode'},
+    {'icon': Icons.share,                  'label': 'Share channel'},
   ];
-  int selectedCategoryIndex = 0;
+
+  // เก็บ index ของ item ที่ถูกกดอยู่ (ถ้าไม่มีการกดจะเป็น null)
+  int? pressedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +41,7 @@ class _AccountPageState extends State<AccountPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              // ส่วนรูปโปรไฟล์ + ชื่อ + อีเมล
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[300],
@@ -77,20 +67,35 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               const SizedBox(height: 20),
+              // ListView แนวนอน
               Container(
-                //color: Colors.black,
                 height: 50,
-                padding: const EdgeInsets.symmetric(vertical:9.0),
+                padding: const EdgeInsets.symmetric(vertical: 9.0),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final item = categories[index];
-                    final bool isSelected = (index == selectedCategoryIndex);
+                    // ตรวจสอบว่า item นี้ถูกกดอยู่หรือไม่
+                    final bool isPressed = (index == pressedIndex);
+
                     return GestureDetector(
-                      onTap: () {
+                      // เมื่อกดลง
+                      onTapDown: (_) {
                         setState(() {
-                          selectedCategoryIndex = index;
+                          pressedIndex = index;
+                        });
+                      },
+                      // เมื่อปล่อยนิ้ว
+                      onTapUp: (_) {
+                        setState(() {
+                          pressedIndex = null;
+                        });
+                      },
+                      // เมื่อยกเลิกการกด (เช่น ลากนิ้วออกนอกโซน)
+                      onTapCancel: () {
+                        setState(() {
+                          pressedIndex = null;
                         });
                       },
                       child: Container(
@@ -100,10 +105,10 @@ class _AccountPageState extends State<AccountPage> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.white : Colors.black,
+                          color: isPressed ? Colors.white : Colors.black,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: isSelected ? Colors.white : Colors.grey,
+                            color: isPressed ? Colors.white : Colors.grey,
                             width: 1,
                           ),
                         ),
@@ -113,7 +118,7 @@ class _AccountPageState extends State<AccountPage> {
                               Icon(
                                 item['icon'],
                                 size: 16,
-                                color: isSelected ? Colors.black : Colors.white,
+                                color: isPressed ? Colors.black : Colors.white,
                               ),
                               const SizedBox(width: 4),
                             ],
@@ -121,7 +126,8 @@ class _AccountPageState extends State<AccountPage> {
                               Text(
                                 item['label'],
                                 style: TextStyle(
-                                  color: isSelected ? Colors.black : Colors.white,
+                                  color:
+                                      isPressed ? Colors.black : Colors.white,
                                 ),
                               ),
                           ],
@@ -132,6 +138,7 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               const SizedBox(height: 20),
+              // ส่วน ListTile อื่น ๆ
               ListTile(
                 leading: const Icon(Icons.video_library),
                 title: const Text('My video'),
