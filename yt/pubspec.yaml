@@ -37,6 +37,7 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   cached_network_image: ^3.4.1
   video_player: ^2.9.3
+  camera: ^0.11.1
 
 dev_dependencies:
   flutter_test:

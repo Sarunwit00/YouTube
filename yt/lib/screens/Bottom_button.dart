@@ -17,7 +17,7 @@ class _BottomButtonState extends State<BottomButton> {
   final _screens = [
     Homepage(),
     ShortsPageNew(),
-    const Scaffold(body: Center(child: Text('Add'))),
+    Scaffold(body: Center(child: Text('Add'))),
     Subscrip(),
     AccountPage(),
   ];
