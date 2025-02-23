@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_sliverbar.dart';
-//import 'Search_Page.dart';
+import '../widgets/video_sliver.dart'; // <-- import ไฟล์ที่เราสร้าง
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -27,6 +27,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // พื้นหลังสีดำ
+      backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: [
           const CustomSliverAppBar(),
@@ -39,7 +41,8 @@ class _HomepageState extends State<Homepage> {
               });
             },
           ),
-          
+          // เพิ่ม SliverList ของวิดีโอ
+          const VideoSliverList(),
         ],
       ),
     );
