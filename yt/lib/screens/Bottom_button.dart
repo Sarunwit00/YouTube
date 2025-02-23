@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Account.dart';
 import 'Home_page.dart';
 import 'Subscrip.dart';
+import 'shorts_page.dart';
 
 class BottomButton extends StatefulWidget {
   const BottomButton({super.key});
@@ -15,7 +16,7 @@ class _BottomButtonState extends State<BottomButton> {
 
   final _screens = [
     Homepage(),
-    const Scaffold(body: Center(child: Text('Shorts'))),
+    ShortsPageNew(),
     const Scaffold(body: Center(child: Text('Add'))),
     Subscrip(),
     AccountPage(),
