@@ -41,7 +41,7 @@ class _AccountPageState extends State<AccountPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              // ส่วนรูปโปรไฟล์ + ชื่อ + อีเมล
+              
               CircleAvatar(
                 radius: 50,
                 backgroundColor: Colors.grey[300],
@@ -67,7 +67,7 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              // ListView แนวนอน
+              
               Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(vertical: 9.0),
@@ -76,23 +76,21 @@ class _AccountPageState extends State<AccountPage> {
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final item = categories[index];
-                    // ตรวจสอบว่า item นี้ถูกกดอยู่หรือไม่
+                    
                     final bool isPressed = (index == pressedIndex);
 
                     return GestureDetector(
-                      // เมื่อกดลง
+                      
                       onTapDown: (_) {
                         setState(() {
                           pressedIndex = index;
                         });
                       },
-                      // เมื่อปล่อยนิ้ว
                       onTapUp: (_) {
                         setState(() {
                           pressedIndex = null;
                         });
                       },
-                      // เมื่อยกเลิกการกด (เช่น ลากนิ้วออกนอกโซน)
                       onTapCancel: () {
                         setState(() {
                           pressedIndex = null;
@@ -138,7 +136,6 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              // ส่วน ListTile อื่น ๆ
               ListTile(
                 leading: const Icon(Icons.video_library),
                 title: const Text('My video'),
