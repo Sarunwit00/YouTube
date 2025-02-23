@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_sliverbar.dart';
-
 //import 'Search_Page.dart';
 
 class Homepage extends StatefulWidget {
@@ -36,10 +35,11 @@ class _HomepageState extends State<Homepage> {
             selectedCategoryIndex: selectedCategoryIndex,
             onCategorySelected: (int index) {
               setState(() {
-          selectedCategoryIndex = index;
+                selectedCategoryIndex = index;
               });
             },
           ),
+          
         ],
       ),
     );
