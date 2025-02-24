@@ -80,7 +80,7 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
   late VideoPlayerController _controller;
   bool _initialized = false;
 
-  // เพิ่ม state สำหรับไลค์และดิสไลค์
+  // state สำหรับไลค์และดิสไลค์
   int _likeCount = 0;
   int _dislikeCount = 0;
 
@@ -162,30 +162,40 @@ class _ShortVideoItemState extends State<ShortVideoItem> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // Like
+              // ปุ่ม Like
               IconButton(
                 icon: const Icon(Icons.thumb_up, color: Colors.white, size: 30),
                 onPressed: () {
                   setState(() {
-                    _likeCount++; // เพิ่มจำนวนไลค์
+                    if (_likeCount == 0) { // ถ้ายังไม่ได้กด
+                      _likeCount = 1;
+                      _dislikeCount = 0; // รีเซ็ตดิสไลค์
+                    } else { // ถ้ากดแล้ว toggle กลับเป็น 0
+                      _likeCount = 0;
+                    }
                   });
                 },
               ),
-              // แสดงจำนวนไลค์ที่กด
+              // แสดงจำนวนไลค์
               Text('$_likeCount', style: const TextStyle(color: Colors.white)),
 
               const SizedBox(height: 20),
 
-              // Dislike
+              // ปุ่ม Dislike
               IconButton(
                 icon: const Icon(Icons.thumb_down, color: Colors.white, size: 30),
                 onPressed: () {
                   setState(() {
-                    _dislikeCount++; // เพิ่มจำนวนดิสไลค์
+                    if (_dislikeCount == 0) { // ถ้ายังไม่ได้กด
+                      _dislikeCount = 1;
+                      _likeCount = 0; // รีเซ็ตไลค์
+                    } else { // ถ้ากดแล้ว toggle กลับเป็น 0
+                      _dislikeCount = 0;
+                    }
                   });
                 },
               ),
-              // แสดงจำนวนดิสไลค์ที่กด
+              // แสดงจำนวนดิสไลค์
               Text('$_dislikeCount', style: const TextStyle(color: Colors.white)),
 
               const SizedBox(height: 20),
