@@ -19,7 +19,7 @@ class _ShortsPageNewState extends State<ShortsPageNew> {
       'title': 'Amazing Video 1',
     },
     {
-      'videoUrl': 'video1.mp4',
+      'videoUrl': 'video2.mp4',
       'creator': '@Creator2',
       'title': 'Amazing Video 2',
     },
